@@ -16,4 +16,25 @@ ENV BITNAMI_APP_NAME="fluent-bit" \
     BITNAMI_IMAGE_VERSION=${FLUENT_BIT_VERSION} \
     PATH="/opt/bitnami/fluent-bit/bin:$PATH"
 
+# Install modules
+COPY lib/libvmod-digest-6.6.tar.gz /etc/varnish
+
+RUN cd /etc/varnish \
+    && mkdir libvmod-digest \
+    && tar -zxf libvmod-digest-6.6.tar.gz -C libvmod-digest --strip-components 1 \
+    && rm -rf /etc/varnish/libvmod-digest-6.6.tar.gz \
+    && apt-get update \
+    && apt-get -y install pkg-config \
+    && apt-get -y install gcc automake pkgconf \
+        libvarnishapi-dev \
+        libmhash-dev \
+        python3-docutils \
+        libtool \
+    && cd /etc/varnish/libvmod-digest \
+    && export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && dpkg -r --force-depends automake make
+
 EXPOSE 2020

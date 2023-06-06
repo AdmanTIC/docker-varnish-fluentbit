@@ -3,8 +3,9 @@ ARG VARNISH_VERSION="6.0.6"
 FROM varnish:${VARNISH_VERSION}
 ARG FLUENT_BIT_VERSION="1.3.6-0-linux-amd64-debian-9"
 
-RUN apt-get update && \
-    apt-get -y install libsasl2-2
+RUN apt-get update \
+    && apt-get -y install   libsasl2-2 \
+                            libsasl2-dev
 
 COPY fluent-bit-${FLUENT_BIT_VERSION}.tar.gz /tmp/bitnami/pkg/cache/
 

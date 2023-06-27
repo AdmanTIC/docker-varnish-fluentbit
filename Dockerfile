@@ -1,7 +1,7 @@
 ARG VARNISH_VERSION="7.3.0"
 
 FROM varnish:${VARNISH_VERSION}
-ARG FLUENT_BIT_VERSION="1.3.6-0-linux-amd64-debian-9"
+ARG FLUENT_BIT_VERSION="1.9.10-0-linux-amd64-debian-11"
 
 RUN apt-get update \
     && apt-get -y install   libsasl2-2 \

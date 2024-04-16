@@ -27,11 +27,11 @@ RUN cd /etc/varnish \
     && apt-get update \
     && apt-get -y install pkg-config \
     && apt-get -y install gcc automake pkgconf \
-        libvarnishapi-dev \
         libmhash-dev \
         python3-docutils \
         libtool \
         libyaml-0-2 \
+        make \
     && cd /etc/varnish/libvmod-digest \
     && export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig \
     && ./autogen.sh \

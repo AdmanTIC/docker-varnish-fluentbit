@@ -25,7 +25,7 @@ if [ -z "$ARG2" ]; then
 fi
 
 # wget -q -nc -P . https://downloads.bitnami.com/files/stacksmith/fluent-bit-${ARG1}.tar.gz
-curl -L https://downloads.bitnami.com/files/stacksmith/fluent-bit-${ARG1}.tar.gz -O
+curl -L https://downloads.bitnami.com/files/stacksmith/fluent-bit-${ARG1}-0-linux-amd64-debian-12.tar.gz -o fluent-bit-${ARG1}.tar.gz
 
 docker build -t admantic/varnish-fluentbit:${ARG3} --build-arg FLUENT_BIT_VERSION=${ARG1} --build-arg VARNISH_VERSION=${ARG2} .
 docker push admantic/varnish-fluentbit:${ARG3}
